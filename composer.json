@@ -1,5 +1,5 @@
 {
-    "name": "min-radish/php-curl",
+    "name": "min-radish/php-wechat-api",
     "description": "PHP对微信公众号API的调用",
     "keywords": ["PHP", "WeChat", "API"],
     "type": "library",
