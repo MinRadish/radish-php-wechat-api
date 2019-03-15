@@ -13,6 +13,9 @@
     "require": {
         "php": ">=5.0.0"
     },
+    "require-dev": {
+        "min-radish/php-curl": "*"
+    },
     "autoload": {
         "psr-4": {
           "Radish\\WeChat\\": "src/"
