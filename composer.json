@@ -14,7 +14,7 @@
         "php": ">=5.0.0"
     },
     "require-dev": {
-        "min-radish/php-curl": "*"
+        "min-radish/php-curl": "~1.0"
     },
     "autoload": {
         "psr-4": {
