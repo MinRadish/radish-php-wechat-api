@@ -1,5 +1,5 @@
 <?php
-namespace common\WeChat;
+namespace Radish\WeChat;
 
 /**
 * @author Radish
