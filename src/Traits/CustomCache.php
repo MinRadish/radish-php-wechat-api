@@ -1,5 +1,5 @@
 <?php
-namespace common\WeChat\Traits;
+namespace Radish\WeChat\Traits;
 
 
 /**
