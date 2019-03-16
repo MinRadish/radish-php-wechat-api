@@ -1,5 +1,5 @@
 <?php
-namespace common\WeChat\Exception;
+namespace Radish\WeChat\Exception;
 
 /**
 * @author Radish 1004622952@qq.com 2019-03-15

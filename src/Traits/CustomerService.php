@@ -33,7 +33,6 @@ trait CustomerService
     public function serviceList()
     {
         $json = Curl::get($this->getServiceListApiUrl());
-        dum($json);
     }
 
     public function getServiceCodeMap()
