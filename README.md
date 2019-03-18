@@ -41,7 +41,6 @@ $json = $wechat->getCSList();
 |invite_wx|如果客服帐号尚未绑定微信号，但是已经发起了一个绑定邀请， 则此处显示绑定邀请的微信号|
 |invite_expire_time|如果客服帐号尚未绑定微信号，但是已经发起过一个绑定邀请， 邀请的过期时间，为unix 时间戳|
 |invite_status|邀请的状态，有等待确认“waiting”，被拒绝“rejected”， 过期“expired”|
-
 ### 获取在线客服列表
 ~~~
 $json = $wechat->getOLCSList();
@@ -71,7 +70,7 @@ $json = $wechat->getOLCSList();
 |status|客服在线状态，目前为：1、web 在线|
 |kf_id|客服编号|
 |accepted_case|客服当前正在接待的会话数|
-
+<br>
 ###添加客服帐号
 ~~~
 $json = $wechat->addCS($param);
@@ -91,7 +90,7 @@ $param 示例
   "errcode" : 0,
   "errmsg" : "ok"
 }
-
+<br>
 ##客服管理接口返回码说明
 
 |返回码|说明|
