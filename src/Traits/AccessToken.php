@@ -53,7 +53,7 @@ trait AccessToken
         $json = Curl::get($this->getTokenApiUrl());
         $array = json_decode($json, true);
         if (!isset($array['access_token'])) {
-            throw new WeChatException("获取access_token失败请重试!");
+            throw new WeChatException("获取access_token失败请重试!", $json);
         }
         
         return $array;

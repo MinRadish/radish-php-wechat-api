@@ -124,7 +124,7 @@ trait CustomerService
         $array = json_decode($json, true);
         if (isset($array['errcode']) && $array['errcode'] != 0) {
             $mes = $this->getCSCodeMap($array['errcode']) ?: $message;
-            throw new WeChatException($mes);
+            throw new WeChatException($mes, $json);
         } else {
             return $array;
         }
