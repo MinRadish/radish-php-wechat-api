@@ -41,7 +41,9 @@ $json = $wechat->getCSList();
 |invite_wx|如果客服帐号尚未绑定微信号，但是已经发起了一个绑定邀请， 则此处显示绑定邀请的微信号|
 |invite_expire_time|如果客服帐号尚未绑定微信号，但是已经发起过一个绑定邀请， 邀请的过期时间，为unix 时间戳|
 |invite_status|邀请的状态，有等待确认“waiting”，被拒绝“rejected”， 过期“expired”|
+
 ### 获取在线客服列表
+
 ~~~
 $json = $wechat->getOLCSList();
 返回数据示例（正确时的JSON返回结果）：
@@ -70,7 +72,9 @@ $json = $wechat->getOLCSList();
 |status|客服在线状态，目前为：1、web 在线|
 |kf_id|客服编号|
 |accepted_case|客服当前正在接待的会话数|
+
 ###添加客服帐号
+
 ~~~
 $json = $wechat->addCS($param);
 $param 示例
@@ -89,6 +93,65 @@ $param 示例
   "errcode" : 0,
   "errmsg" : "ok"
 }
+
+###邀请绑定客服帐号
+
+*$json = $wechat->invitBindCS($param);*
+
+~~~
+$param 示例
+{
+    "kf_account" : "test1@test",
+    "invite_wx" : "test_kfwx"
+}
+~~~
+
+参数说明
+
+|参数|说明|
+|:--|:--|
+|kf_account|完整客服帐号，格式为：帐号前缀@公众号微信号|
+|invite_wx|接收绑定邀请的客服微信号|
+
+###设置客服信息
+
+*$json = $wechat->updateCS($param);*
+
+~~~
+$param示例
+{
+    "kf_account" : "test1@test",
+    "nickname" : "客服1"
+}
+~~~
+
+参数说明
+
+|参数|说明|
+|:--|:--|
+|kf_account|完整客服帐号，格式为：帐号前缀@公众号微信号|
+|nickname|客服昵称，最长16个字|
+
+###上传客服头像
+
+*$json = $wechat->updateCSImg($CSAccount, $param);*
+
+*$CSAccount完整客服帐号，格式为：帐号前缀@公众号微信号*
+
+~~~
+$param 参数示例有待考证
+{
+
+}
+~~~
+
+###删除客服帐号
+
+*$json = $wechat->updateCSImg($CSAccount);*
+
+*$CSAccount完整客服帐号，格式为：帐号前缀@公众号微信号*
+
+
 ##客服管理接口返回码说明
 
 |返回码|说明|
