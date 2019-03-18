@@ -4,7 +4,6 @@
 **public function cacheGet($key = 'access_token', $default = false);**
 <br>
 **public function cacheSet($key, $val, $timeout = 7140);**
-<br>
 ## api示例说明
 ~~~
     $wechat = new WeChat();
@@ -32,7 +31,6 @@ $json = $wechat->getCSList();
     ]
 }
 ~~~
-<br>
 |参数|说明|
 |:--|:--|
 |kf_account|完整客服帐号，格式为：帐号前缀@公众号微信号|
@@ -44,7 +42,6 @@ $json = $wechat->getCSList();
 |invite_expire_time|如果客服帐号尚未绑定微信号，但是已经发起过一个绑定邀请， 邀请的过期时间，为unix 时间戳|
 |invite_status|邀请的状态，有等待确认“waiting”，被拒绝“rejected”， 过期“expired”|
 
-<br>
 ### 获取在线客服列表
 ~~~
 $json = $wechat->getOLCSList();
@@ -74,7 +71,6 @@ $json = $wechat->getOLCSList();
 |kf_id|客服编号|
 |accepted_case|客服当前正在接待的会话数|
 ~~~
-<br>
 ###添加客服帐号
 ~~~
 $json = $wechat->addCS($param);
@@ -94,7 +90,6 @@ $param 示例
   "errmsg" : "ok"
 }
 ~~~
-
 ##客服管理接口返回码说明
 ~~~
 |返回码|说明|
