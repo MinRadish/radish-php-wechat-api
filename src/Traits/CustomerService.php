@@ -2,6 +2,7 @@
 namespace Radish\WeChat\Traits;
 
 use Radish\network\Curl;
+use Radish\WeChat\Exception\WeChatException;
 
 /**
 * @author Radish 1004622952@qq.com 2019-03-15
@@ -10,14 +11,19 @@ use Radish\network\Curl;
 
 trait CustomerService
 {
-    //http请求方式: GET::get($this->getSe)
-    private $serviceListApiUrl = 'https://api.weixin.qq.com/cgi-bin/customservice/getkflist?access_token=';
+    //http请求方式: GET
+    private $_CSListUrl = 'https://api.weixin.qq.com/cgi-bin/customservice/getkflist?access_token=';
+    //http请求方式: GET 
+    private $_OLCSListUrl = 'https://api.weixin.qq.com/cgi-bin/customservice/getonlinekflist?access_token=';
+    // http请求方式: POST
+    private $_addCSUrl = 'https://api.weixin.qq.com/customservice/kfaccount/add?access_token=';
+
     /**
      * 将消息转发至客服
      * @param  array  $param
      * @return xml
      */
-    public function transferService(array $param)
+    public function transferCS(array $param)
     {
         !isset($param['MsgType']) && $param['MsgType'] = 'transfer_customer_service';
         $xml = $this->arrayToXml($param);
@@ -25,17 +31,88 @@ trait CustomerService
         return $xml;
     }
 
-    protected function getServiceListApiUrl()
+    /**
+     * 获取客服列表API地址
+     * @return string API地址
+     */
+    protected function getCSListUrl()
     {
-        return $this->serviceListApiUrl . $this->getAccessToken();
+        return $this->_CSListUrl . $this->getAccessToken();
     }
 
-    public function serviceList()
+    /**
+     * 请求并获取客服列表
+     * @return array 客服列表数组
+     */
+    public function getCSList()
     {
-        $json = Curl::get($this->getServiceListApiUrl());
+        $json = Curl::get($this->getCSListUrl());
+
+        return $this->getCSMessage($json, '获取客服列表失败!');
     }
 
-    public function getServiceCodeMap()
+    /**
+     * 获取在线客服列表API地址
+     * @return string API地址
+     */
+    protected function getOLCSListUrl()
+    {
+        return $this->_OLCSListUrl . $this->getAccessToken();
+    }
+
+    /**
+     * 获取在线客服列表
+     * @return array
+     */
+    public function getOLCSList()
+    {
+        $json = Curl::get($this->getOLCSListUrl());
+
+        return $this->getCSMessage($json, '获取在线客服列表失败！');
+    }
+
+    /**
+     * 获取添加客服信息API地址
+     * @return string URL
+     */
+    protected function getAddCSUrl()
+    {
+        return $this->_addCSUrl . $this->getAccessToken();
+    }
+
+    /**
+     * 添加客服
+     * @param array $param 添加信息
+     */
+    public function addCS(array $param)
+    {
+        $json = json_encode($param, JSON_UNESCAPED_UNICODE);
+        $result = Curl::post($this->getAddCSUrl(), $json);
+
+        return $this->getCSMessage($result, "添加客服失败！");
+    }
+
+    /**
+     * 获取请求时的错误信息
+     * @param  json-string $json   微信响应数据
+     * @param  string $message 信息提示
+     * @return array          响应数据格式化后信息
+     */
+    protected function getCSMessage($json, $message = '未知错误！')
+    {
+        $array = json_decode($json, true);
+        if (isset($array['errcode']) && $array['errcode'] != 0) {
+            throw new WeChatException($this->getCSCodeMap($array['errcode']) || $message);
+        } else {
+            return $array;
+        }
+    }
+
+    /**
+     * 获取错误代码
+     * @return String 错误代码与信息
+     */
+    public function getCSCodeMap()
     {
         return [
             '0'     =>  '成功',
