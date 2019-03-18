@@ -70,7 +70,6 @@ $json = $wechat->getOLCSList();
 |status|客服在线状态，目前为：1、web 在线|
 |kf_id|客服编号|
 |accepted_case|客服当前正在接待的会话数|
-<br>
 ###添加客服帐号
 ~~~
 $json = $wechat->addCS($param);
@@ -90,9 +89,7 @@ $param 示例
   "errcode" : 0,
   "errmsg" : "ok"
 }
-<br>
 ##客服管理接口返回码说明
-
 |返回码|说明|
 |:--|:--|
 |0|成功|
