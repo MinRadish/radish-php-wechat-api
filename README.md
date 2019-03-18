@@ -1,14 +1,17 @@
 # php对微信公众号的API的调用
-<br/>
+<br>
 *需自定义一个类并继承 Radish\WeChat\WeChat 自定义CaChe抽象方法*
+<br>
 **public function cacheGet($key = 'access_token', $default = false);**
+<br>
 **public function cacheSet($key, $val, $timeout = 7140);**
+<br>
 ## api示例说明
-```
+~~~
     $wechat = new WeChat();
-```
+~~~
 ### 获取客服列表
-```
+~~~
 $json = $wechat->getCSList();
 正确响应
 {   
@@ -28,7 +31,8 @@ $json = $wechat->getCSList();
             "kf_wx" : "kfwx2"
          }
     ]
-}```
+}
+~~~
 <br>
 |参数|说明|
 |:--|:--|
@@ -43,7 +47,7 @@ $json = $wechat->getCSList();
 
 <br>
 ### 获取在线客服列表
-```
+~~~
 $json = $wechat->getOLCSList();
 返回数据示例（正确时的JSON返回结果）：
  {
@@ -70,10 +74,10 @@ $json = $wechat->getOLCSList();
 |status|客服在线状态，目前为：1、web 在线|
 |kf_id|客服编号|
 |accepted_case|客服当前正在接待的会话数|
-```
+~~~
 <br>
 ###添加客服帐号
-```
+~~~
 $json = $wechat->addCS($param);
 $param 示例
 {
@@ -90,10 +94,10 @@ $param 示例
   "errcode" : 0,
   "errmsg" : "ok"
 }
-```
+~~~
 
 ##客服管理接口返回码说明
-```
+~~~
 |返回码|说明|
 |:--|:--|
 |0|成功|
@@ -111,4 +115,4 @@ $param 示例
 |65412|该帐号已经绑定微信号，不能进行邀请|
 |40005|不支持的媒体类型|
 |40009|媒体文件长度不合法|
-```
+~~~
