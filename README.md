@@ -30,7 +30,6 @@ $json = $wechat->getCSList();
          }
     ]
 }
-~~~
 |参数|说明|
 |:--|:--|
 |kf_account|完整客服帐号，格式为：帐号前缀@公众号微信号|
@@ -41,7 +40,7 @@ $json = $wechat->getCSList();
 |invite_wx|如果客服帐号尚未绑定微信号，但是已经发起了一个绑定邀请， 则此处显示绑定邀请的微信号|
 |invite_expire_time|如果客服帐号尚未绑定微信号，但是已经发起过一个绑定邀请， 邀请的过期时间，为unix 时间戳|
 |invite_status|邀请的状态，有等待确认“waiting”，被拒绝“rejected”， 过期“expired”|
-
+~~~
 ### 获取在线客服列表
 ~~~
 $json = $wechat->getOLCSList();
