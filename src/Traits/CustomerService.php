@@ -123,7 +123,8 @@ trait CustomerService
     {
         $array = json_decode($json, true);
         if (isset($array['errcode']) && $array['errcode'] != 0) {
-            throw new WeChatException($this->getCSCodeMap($array['errcode']) || $message);
+            $mes = $this->getCSCodeMap($array['errcode']) ?: $message;
+            throw new WeChatException($mes);
         } else {
             return $array;
         }
@@ -131,11 +132,12 @@ trait CustomerService
 
     /**
      * 获取错误代码
+     * @param  string $key 代码
      * @return String 错误代码与信息
      */
-    public function getCSCodeMap()
+    public function getCSCodeMap($key)
     {
-        return [
+        $codeMap = [
             '0'     =>  '成功',
             '65400' =>  'API不可用，即没有开通/升级到新版客服功能',
             '65401' =>  '无效客服帐号',
@@ -152,6 +154,9 @@ trait CustomerService
             '40005' =>  '不支持的媒体类型',
             '40009' =>  '媒体文件长度不合法',
         ];
+        $info = isset($codeMap[$key]) ? $codeMap[$key] : false;
+
+        return $info;
     }
 
     protected function getCSApiUrl($key)
