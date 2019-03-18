@@ -1,5 +1,4 @@
 # php对微信公众号的API的调用
-<br>
 *需自定义一个类并继承 Radish\WeChat\WeChat 自定义CaChe抽象方法*
 <br>
 **public function cacheGet($key = 'access_token', $default = false);**
