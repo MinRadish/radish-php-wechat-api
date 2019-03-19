@@ -64,6 +64,7 @@ $json = $wechat->getOLCSList();
      ]
  }
 ~~~
+
 参数说明
 
 |参数|说明|
@@ -73,7 +74,7 @@ $json = $wechat->getOLCSList();
 |kf_id|客服编号|
 |accepted_case|客服当前正在接待的会话数|
 
-###添加客服帐号
+### 添加客服帐号
 
 ~~~
 $json = $wechat->addCS($param);
@@ -83,6 +84,7 @@ $param 示例
     "nickname" : "客服1"
 }
 ~~~
+
 |参数|说明|
 |:--|:--|
 |kf_account|完整客服帐号，格式为：帐号前缀@公众号微信号，帐号前缀最多10个字符，必须是英文、数字字符或者下划线，后缀为公众号微信号，长度不超过30个字符|
@@ -94,7 +96,7 @@ $param 示例
   "errmsg" : "ok"
 }
 
-###邀请绑定客服帐号
+### 邀请绑定客服帐号
 
 *$json = $wechat->invitBindCS($param);*
 
@@ -113,7 +115,7 @@ $param 示例
 |kf_account|完整客服帐号，格式为：帐号前缀@公众号微信号|
 |invite_wx|接收绑定邀请的客服微信号|
 
-###设置客服信息
+### 设置客服信息
 
 *$json = $wechat->updateCS($param);*
 
@@ -132,7 +134,7 @@ $param示例
 |kf_account|完整客服帐号，格式为：帐号前缀@公众号微信号|
 |nickname|客服昵称，最长16个字|
 
-###上传客服头像
+### 上传客服头像
 
 *$json = $wechat->updateCSImg($CSAccount, $param);*
 
@@ -145,14 +147,14 @@ $param 参数示例有待考证
 }
 ~~~
 
-###删除客服帐号
+### 删除客服帐号
 
 *$json = $wechat->updateCSImg($CSAccount);*
 
 *$CSAccount完整客服帐号，格式为：帐号前缀@公众号微信号*
 
 
-##客服管理接口返回码说明
+## 客服管理接口返回码说明
 
 |返回码|说明|
 |:--|:--|
