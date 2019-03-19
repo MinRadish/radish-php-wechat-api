@@ -53,7 +53,11 @@ trait CustomerService
     public function addCS(array $param)
     {
         $json = json_encode($param, JSON_UNESCAPED_UNICODE);
-        $result = Curl::post($this->getCSApiUrl('addCSUrl'), $json);
+        $options = [
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_SSL_VERIFYHOST => false
+        ];
+        $result = Curl::post($this->getCSApiUrl('addCSUrl'), $json, $options);
 
         return $this->getCSMessage($result, "添加客服失败！");
     }
@@ -66,7 +70,11 @@ trait CustomerService
     public function invitBindCS(array $param)
     {
         $json = json_encode($param, JSON_UNESCAPED_UNICODE);
-        $result = Curl::post($this->getCSApiUrl('inviteBindCSUrl'), $json);
+        $options = [
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_SSL_VERIFYHOST => false
+        ];
+        $result = Curl::post($this->getCSApiUrl('inviteBindCSUrl'), $json, $options);
 
         return $this->getCSMessage($result, '邀请失败！');
     }
@@ -80,7 +88,11 @@ trait CustomerService
     public function updateCS(array $param)
     {
         $json = json_encode($param, JSON_UNESCAPED_UNICODE);
-        $result = Curl::post($this->getCSApiUrl('updateCSUrl'), $json);
+        $options = [
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_SSL_VERIFYHOST => false
+        ];
+        $result = Curl::post($this->getCSApiUrl('updateCSUrl'), $json, $options);
 
         return $this->getCSMessage($result, '跟新失败！');
     }
@@ -95,7 +107,11 @@ trait CustomerService
     {
         // $json = json_encode($param, JSON_UNESCAPED_UNICODE);
         $url = $this->getCSApiUrl('uploadCSImgUrl') . '&kf_account=' . $CSAccount;
-        $result = Curl::post($url, $param);
+        $options = [
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_SSL_VERIFYHOST => false
+        ];
+        $result = Curl::post($url, $param, $options);
 
         return $this->getCSMessage($result, '上传客服头像失败！');
     }
