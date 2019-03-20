@@ -14,6 +14,7 @@ abstract class WeChat
     use Traits\EasyFunction;
     use Traits\CustomerService;
     use Traits\AccessToken;
+    use Traits\Material;
 
     public function __construct(array $options = [])
     {

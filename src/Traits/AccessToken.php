@@ -53,7 +53,8 @@ trait AccessToken
         $json = Curl::get($this->getTokenApiUrl());
         $array = json_decode($json, true);
         if (!isset($array['access_token'])) {
-            throw new WeChatException("获取access_token失败请重试!", $json);
+            $mes = $this->getCodeMap($array['errcode']) ?: '获取access_token失败请重试!';
+            throw new WeChatException($mes, $json);
         }
         
         return $array;

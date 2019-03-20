@@ -141,10 +141,11 @@ $param示例
 *$CSAccount完整客服帐号，格式为：帐号前缀@公众号微信号*
 
 ~~~
-$param 参数示例有待考证
-{
-
-}
+$file = 文件绝对路径;
+$param 
+[
+  'media' => new \CURLFile($file)
+]
 ~~~
 
 ### 删除客服帐号

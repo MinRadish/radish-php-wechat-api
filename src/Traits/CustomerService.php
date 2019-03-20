@@ -2,7 +2,6 @@
 namespace Radish\WeChat\Traits;
 
 use Radish\network\Curl;
-use Radish\WeChat\Exception\WeChatException;
 
 /**
 * @author Radish 1004622952@qq.com 2019-03-15
@@ -32,7 +31,7 @@ trait CustomerService
     {
         $json = Curl::get($this->getCSApiUrl('CSListUrl'));
 
-        return $this->getCSMessage($json, '获取客服列表失败!');
+        return $this->getMessage($json, '获取客服列表失败!');
     }
 
     /**
@@ -43,7 +42,7 @@ trait CustomerService
     {
         $json = Curl::get($this->getCSApiUrl('OLCSListUrl'));
 
-        return $this->getCSMessage($json, '获取在线客服列表失败！');
+        return $this->getMessage($json, '获取在线客服列表失败！');
     }
 
     /**
@@ -59,7 +58,7 @@ trait CustomerService
         ];
         $result = Curl::post($this->getCSApiUrl('addCSUrl'), $json, $options);
 
-        return $this->getCSMessage($result, "添加客服失败！");
+        return $this->getMessage($result, "添加客服失败！");
     }
 
     /**
@@ -76,7 +75,7 @@ trait CustomerService
         ];
         $result = Curl::post($this->getCSApiUrl('inviteBindCSUrl'), $json, $options);
 
-        return $this->getCSMessage($result, '邀请失败！');
+        return $this->getMessage($result, '邀请失败！');
     }
 
 
@@ -94,7 +93,7 @@ trait CustomerService
         ];
         $result = Curl::post($this->getCSApiUrl('updateCSUrl'), $json, $options);
 
-        return $this->getCSMessage($result, '跟新失败！');
+        return $this->getMessage($result, '跟新失败！');
     }
 
     /**
@@ -113,7 +112,7 @@ trait CustomerService
         ];
         $result = Curl::post($url, $param, $options);
 
-        return $this->getCSMessage($result, '上传客服头像失败！');
+        return $this->getMessage($result, '上传客服头像失败！');
     }
 
     /**
@@ -126,53 +125,7 @@ trait CustomerService
         $url = $this->getCSApiUrl('deleteCSUrl') . '&kf_account=' . $CSAccount;
         $result = Curl::get($url);
 
-        return $this->getCSMessage($result, '删除客服失败！');
-    }
-
-    /**
-     * 获取请求时的错误信息
-     * @param  json-string $json   微信响应数据
-     * @param  string $message 信息提示
-     * @return array          响应数据格式化后信息
-     */
-    protected function getCSMessage($json, $message = '未知错误！')
-    {
-        $array = json_decode($json, true);
-        if (isset($array['errcode']) && $array['errcode'] != 0) {
-            $mes = $this->getCSCodeMap($array['errcode']) ?: $message;
-            throw new WeChatException($mes, $json);
-        } else {
-            return $array;
-        }
-    }
-
-    /**
-     * 获取错误代码
-     * @param  string $key 代码
-     * @return String 错误代码与信息
-     */
-    public function getCSCodeMap($key)
-    {
-        $codeMap = [
-            '0'     =>  '成功',
-            '65400' =>  'API不可用，即没有开通/升级到新版客服功能',
-            '65401' =>  '无效客服帐号',
-            '65403' =>  '客服昵称不合法',
-            '65404' =>  '客服帐号不合法',
-            '65405' =>  '帐号数目已达到上限，不能继续添加',
-            '65406' =>  '已经存在的客服帐号',
-            '65407' =>  '邀请对象已经是该公众号客服',
-            '65408' =>  '本公众号已经有一个邀请给该微信',
-            '65409' =>  '无效的微信号',
-            '65410' =>  '邀请对象绑定公众号客服数达到上限（目前每个微信号可以绑定5个公众号客服帐号）',
-            '65411' =>  '该帐号已经有一个等待确认的邀请，不能重复邀请',
-            '65412' =>  '该帐号已经绑定微信号，不能进行邀请',
-            '40005' =>  '不支持的媒体类型',
-            '40009' =>  '媒体文件长度不合法',
-        ];
-        $info = isset($codeMap[$key]) ? $codeMap[$key] : false;
-
-        return $info;
+        return $this->getMessage($result, '删除客服失败！');
     }
 
     protected function getCSApiUrl($key)
