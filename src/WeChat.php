@@ -13,6 +13,7 @@ abstract class WeChat
 
     use Traits\EasyFunction;
     use Traits\CustomerService;
+    use Traits\CustomerServiceSession;
     use Traits\AccessToken;
     use Traits\Material;
 

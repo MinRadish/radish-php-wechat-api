@@ -150,14 +150,15 @@ https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=ACCESS_TOKEN
 
 XML参数说明：
 
-参数  说明
-ToUserName  开发者帐号
-FromUserName    接收方帐号（OpenID）
-CreateTime  消息创建时间戳
-MsgType Text
-Content 点击的菜单名
-MsgId   消息ID
-bizmsgmenuid    点击的菜单ID
+|参数|说明|
+|:--|:--|
+|ToUserName|开发者帐号|
+|FromUserName|接收方帐号（OpenID）|
+|CreateTime|消息创建时间戳|
+|MsgType|Text|
+|Content|点击的菜单名|
+|MsgId|消息ID|
+|bizmsgmenuid|点击的菜单ID|
 收到XML推送之后，开发者可以根据提取出来的bizmsgmenuid和Content识别出微信用户点击的是哪个菜单。
 
 
@@ -259,3 +260,42 @@ JSON数据包如下：
 |45072|command字段取值不对|
 |45080|下发输入状态，需要之前30秒内跟用户有过消息交互|
 |45081|已经在输入状态，不可重复下发|
+
+## 获取客服连天记录
+$json = $wechat->getCSMsgList($param);
+
+$param参数示例
+
+~~~
+$param = [
+  'starttime' => 987654321, //起始时间，unix时间戳
+  'endtime' => 987654321, //结束时间，unix时间戳，每次查询时段不能超过24小时
+  'msgid' => 1, //消息id顺序从小到大，从1开始
+  'number' => 10000 //每次获取条数，最多10000条
+];
+~~~
+
+响应数据示例
+
+~~~
+{
+  "recordlist"   : [
+     {
+        "openid"   :  "oDF3iY9WMaswOPWjCIp_f3Bnpljk" ,
+        "opercode"   : 2002,
+        "text"   :  " 您好，客服test1为您服务。" ,
+        "time"   : 1400563710,
+        "worker"   :  "test1@test"
+     },
+     {
+        "openid"   :  "oDF3iY9WMaswOPWjCIp_f3Bnpljk" ,
+        "opercode"   : 2003,
+        "text"   :  "你好，有什么事情？" ,
+        "time"   : 1400563731,
+        "worker"   :  "test1@test"
+     }
+  ],
+  "number":2,
+  "msgid":20165267
+}
+~~~
