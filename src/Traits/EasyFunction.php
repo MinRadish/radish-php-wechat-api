@@ -1,6 +1,7 @@
 <?php
 namespace Radish\WeChat\Traits;
 use Radish\WeChat\Exception\WeChatException;
+use Radish\network\Curl;
 
 /**
 * @author Radish 1004622952@qq.com 2019-03-15
@@ -82,6 +83,19 @@ trait EasyFunction
         $xml = $this->getXml();
 
         return $this->xmlToArray($xml);
+    }
+
+    /**
+     * 获取微信服务器IP列表
+     * @return array 
+     */
+    public function getServerIpList()
+    {
+        //HTTP GET
+        $url = 'https://api.weixin.qq.com/cgi-bin/getcallbackip?access_token=' . $this->getAccessToken();
+        $result = Curl::get($url);
+
+        return $this->getMessage($result, '获取微信服务器IP列表失败！');
     }
 
     /**
