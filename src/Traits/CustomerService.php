@@ -1,7 +1,7 @@
 <?php
 namespace Radish\WeChat\Traits;
 
-use Radish\network\Curl;
+use Radish\Network\Curl;
 
 /**
 * @author Radish 1004622952@qq.com 2019-03-15

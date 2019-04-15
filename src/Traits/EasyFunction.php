@@ -1,7 +1,8 @@
 <?php
 namespace Radish\WeChat\Traits;
+
 use Radish\WeChat\Exception\WeChatException;
-use Radish\network\Curl;
+use Radish\Network\Curl;
 
 /**
 * @author Radish 1004622952@qq.com 2019-03-15
@@ -154,6 +155,18 @@ trait EasyFunction
             '40001' => 'AppSecret错误或者AppSecret不属于这个公众号，请开发者确认AppSecret的正确性',
             '40002' => '请确保grant_type字段值为client_credential',
             '40164' => '调用接口的IP地址不在白名单中，请在接口IP白名单中进行设置。（小程序及小游戏调用不要求IP地址在白名单内。）',
+            //web auth
+            '10003' => 'redirect_uri域名与后台配置不一致',
+            '10004' => '此公众号被封禁',
+            '10005' => '此公众号并没有这些scope的权限',
+            '10006' => '必须关注此测试号',
+            '10009' => '操作太频繁了，请稍后重试',
+            '10010' => 'scope不能为空',
+            '10011' => 'redirect_uri不能为空',
+            '10012' => 'appid不能为空',
+            '10013' => 'state不能为空',
+            '10015' => '公众号未授权第三方平台，请检查授权状态',
+            '10016' => '不支持微信开放平台的Appid，请使用公众号Appid',
         ];
         $info = isset($codeMap[$key]) ? $codeMap[$key] : false;
 

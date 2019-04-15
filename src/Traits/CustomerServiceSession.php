@@ -1,7 +1,7 @@
 <?php
 namespace Radish\WeChat\Traits;
 
-use Radish\network\Curl;
+use Radish\Network\Curl;
 use Radish\WeChat\Exception\WeChatException;
 
 /**

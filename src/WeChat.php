@@ -17,6 +17,7 @@ abstract class WeChat
     use Traits\MessageManage;
     use Traits\AccessToken;
     use Traits\Material;
+    use Traits\WebAuth;
 
     public function __construct(array $options = [])
     {
