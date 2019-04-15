@@ -22,7 +22,7 @@ trait WebAuth
     {
         $url = urlencode($url);
 
-        return 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' . self::$AppID . '&redirect_uri= ' . $url . '&response_type=code&scope=' . $this->scope . '&state=' . $state . '#wechat_redirect';
+        return 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' . self::$AppID . '&redirect_uri=' . $url . '&response_type=code&scope=' . $this->scope . '&state=' . $state . '#wechat_redirect';
     }
 
     /**
@@ -53,7 +53,7 @@ trait WebAuth
     {
         $apiUrls = [
             //GET
-            'access_token' => 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=' . self::$AppID . '&secret=' . $AppSecret . '&code=%s&grant_type=authorization_code',
+            'access_token' => 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=' . self::$AppID . '&secret=' . self::$AppSecret . '&code=%s&grant_type=authorization_code',
             //GET
             'user_info' => 'https://api.weixin.qq.com/sns/userinfo?access_token=%s&openid=%s&lang=zh_CN',
         ];
