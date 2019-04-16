@@ -8,6 +8,7 @@
 namespace Radish\WeChat\Traits;
 
 use Radish\WeChat\Exception\WeChatException;
+use Radish\Network\Curl;
 
 trait WebAuth
 {
