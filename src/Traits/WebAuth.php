@@ -1,6 +1,6 @@
 <?php
 /**
- * 
+ * 网页授权
  * @authors Radish (1004622952@qq.com)
  * @date    2019-04-15 17:21:42
  */
@@ -35,14 +35,14 @@ trait WebAuth
     {
         $tokenUrl = sprintf($this->getWebAuthApiUrl('access_token'), $code);
         $tokenResult = Curl::get($tokenUrl);
-        $token = $this->getMessage($result, '获取AuthToken失败!');
+        $token = $this->getMessage($tokenResult, '获取AuthToken失败!');
         if ($this->scope == 'snsapi_userinfo') {
             $infoUrl = sprintf($this->getUserInfo('user_info'), $token['access_token'], $token['openid']);
             $userResult = Curl::get($infoUrl);
             return $this->getMessage($userResult, '获取用户信息失败!');
+        } else {
+            return $this->getUserManageInfo($token['openid']);
         }
-
-        return $token;
     }
 
     /**
