@@ -18,14 +18,12 @@ trait EasyFunction
         $signature = $_GET['signature'];
         $timestamp = $_GET['timestamp'];
         $nonce = $_GET['nonce'];
-        $array = array($timestamp, $nonce);
+        $array = array($timestamp, $nonce, self::$token);
         sort($array, SORT_STRING);
         $string = implode($array);
         $string = sha1($string);
         if ($string == $signature) {
             $echoStr = $_GET['echostr'];
-            header('content-type:text');
-
             return $echoStr;
         } else {
             return false;
@@ -167,6 +165,8 @@ trait EasyFunction
             '10013' => 'state不能为空',
             '10015' => '公众号未授权第三方平台，请检查授权状态',
             '10016' => '不支持微信开放平台的Appid，请使用公众号Appid',
+            '40029' => '无效的code',
+            '40163' => 'code已被使用',
         ];
         $info = isset($codeMap[$key]) ? $codeMap[$key] : false;
 

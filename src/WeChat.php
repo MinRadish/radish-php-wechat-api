@@ -28,5 +28,8 @@ abstract class WeChat
         if (isset($options['appSecret'])) {
             self::$AppSecret = $options['appSecret'];
         }
+        if (isset($options['scope'])) {
+            $this->scope = $options['scope'];
+        }
     }
 }
