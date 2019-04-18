@@ -37,7 +37,7 @@ trait WebAuth
         $tokenResult = Curl::get($tokenUrl);
         $token = $this->getMessage($tokenResult, '获取AuthToken失败!');
         if ($this->scope == 'snsapi_userinfo') {
-            $infoUrl = sprintf($this->getUserInfo('user_info'), $token['access_token'], $token['openid']);
+            $infoUrl = sprintf($this->getWebAuthApiUrl('user_info'), $token['access_token'], $token['openid']);
             $userResult = Curl::get($infoUrl);
             return $this->getMessage($userResult, '获取用户信息失败!');
         } else {
