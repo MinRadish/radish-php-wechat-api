@@ -39,7 +39,7 @@
 ## 获取微信用户信息
 ~~~
     $code 微信回调地址带的参数
-    $wechat->getUserInfo($code); 
-
-**  该方法返回用户信息
+    $userInfo = $wechat->getUserInfo($code); 
+    $userInfo['subscribe'] == 0 //未关注公众号
+**该方法返回用户信息**
 ~~~
