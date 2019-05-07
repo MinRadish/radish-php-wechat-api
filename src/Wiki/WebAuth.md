@@ -1,5 +1,4 @@
 # 微信网页授权
-***(大坑,[网页授权]微信服务器会同一code调转多次)***
 ~~~
     protected $scope = 'snsapi_base';// snsapi_base 静默授权(必须关注公众号) snsapi_userinfo 手动授权
 ~~~
