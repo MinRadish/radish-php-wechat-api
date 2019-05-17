@@ -46,6 +46,19 @@ trait WebAuth
     }
 
     /**
+     * 通过OPENID获取用户信息
+     * @param  string $openid openid
+     * @return mixed          响应结果
+     */
+    public function getUser(string $openid)
+    {
+        $url = sprintf($this->getWebAuthApiUrl('get_user_info'), $this->getAccessToken(), $openid);
+        $result = Curl::get($url);
+
+        return $this->getMessage($result, '获取用户信息失败!');
+    }
+
+    /**
      * 获取微信网页授权需要的连接
      * @param  string $key 连接类型
      * @return string      URL连接
@@ -57,6 +70,8 @@ trait WebAuth
             'access_token' => 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=' . self::$AppID . '&secret=' . self::$AppSecret . '&code=%s&grant_type=authorization_code',
             //GET
             'user_info' => 'https://api.weixin.qq.com/sns/userinfo?access_token=%s&openid=%s&lang=zh_CN',
+            //GET
+            'get_user_info' => 'https://api.weixin.qq.com/cgi-bin/user/info?access_token=%s&openid=%s&lang=zh_CN'
         ];
 
         return $apiUrls[$key];

@@ -35,10 +35,17 @@
     |10015|公众号未授权第三方平台，请检查授权状态|
     |10016|不支持微信开放平台的Appid，请使用公众号Appid|
 
-## 获取微信用户信息
+## 通过Code获取微信用户信息
 ~~~
     $code 微信回调地址带的参数
     $userInfo = $wechat->getUserInfo($code); 
     $userInfo['subscribe'] == 0 //未关注公众号
 **该方法返回用户信息**
+~~~
+
+# 通过OPENID获取微信用户信息
+
+~~~
+    $userInfo = $wechat->getUser($open); 
+    **该方法返回用户信息**
 ~~~
