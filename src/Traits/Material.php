@@ -9,6 +9,12 @@ use Radish\Network\Curl;
 */
 trait Material
 {
+    /**
+     * 上传临时素材
+     * @param  string $type  媒体文件类型[图片(image), 语音(voice), 视频(video), 缩略图(thumb)]
+     * @param  [type] $media [description]
+     * @return [type]        [description]
+     */
     public function uploadMaterial($type, $media)
     {
         $url = $this->getMaterialUrl('uploadMedia') . '&type=' . $type;
