@@ -3,6 +3,7 @@
 # 上传临时素材
 ~~~
 $wechat->uploadMaterial($type, $media);
+响应:{"type":"TYPE","media_id":"MEDIA_ID","created_at":123456789}
 ~~~
 **$type**
 ~~~
