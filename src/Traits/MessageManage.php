@@ -35,6 +35,23 @@ trait MessageManage
     }
 
     /**
+     * 发送公众号模板消息
+     * @param  array  $params 参数
+     * @return array             微信响应数据
+     */
+    public function sendTpl(array $params)
+    {
+        $options = [
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_SSL_VERIFYHOST => false
+        ];
+        $params = json_encode($params, JSON_UNESCAPED_UNICODE);
+        $result = Curl::post($this->getMsgApiUrl('sendTpl'), $params, $options);
+        
+        return $this->getMessage($result, '发送模板消息失败！');
+    }
+
+    /**
      * 请求地址
      * @param  string $key key
      * @return  string    URL
@@ -44,6 +61,8 @@ trait MessageManage
         $urlMap = [
             // http请求方式: POST
             'sendMessage' => 'https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=',
+            // 公众号模板消息: POST
+            'sendTpl' => 'https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=',
         ];
 
         return $urlMap[$key] . $this->getAccessToken();

@@ -21,6 +21,18 @@ class WeChatException extends \Exception
     public function createLog()
     {
         $path = $_SERVER['DOCUMENT_ROOT'];
+        if (PHP_SAPI == 'cli') {
+            $path = $_SERVER['PWD'];
+            if (PHP_OS == 'WINNT') {
+                preg_match('/^\/(\w+\/?)/', $path, $array);
+                if (count($array) >= 2) {
+                    $dir = trim($array[1], '\/') . ':';
+                    $path = $dir . substr($path, strlen($array[0]) - 1);
+                }
+            }
+        } else {
+            $path = $_SERVER['DOCUMENT_ROOT'];
+        }
         if (is_dir($path)) {
             $file = $path . '/WeChat.log';
             $time = date('Y-m-d H:i:s');
