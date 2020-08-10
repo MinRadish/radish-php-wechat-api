@@ -49,9 +49,9 @@ trait Material
     {
         $apiUrl = [
             //临时
-            'uploadMediaTemp' => 'https://api.weixin.qq.com/cgi-bin/media/upload?access_token='
+            'uploadMediaTemp' => 'https://api.weixin.qq.com/cgi-bin/media/upload?access_token=',
             //永久
-            'uploadMedia' => 'https://api.weixin.qq.com/cgi-bin/material/add_material?access_token='
+            'uploadMedia' => 'https://api.weixin.qq.com/cgi-bin/material/add_material?access_token=',
         ];
 
         return $apiUrl[$key] . $this->getAccessToken();
